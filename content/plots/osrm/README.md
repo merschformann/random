@@ -28,7 +28,7 @@
 - _contract_:
   - Peak RAM usage: 224867725312 bytes
   - Walltime: 473m30.413s
-- disk space used by files (from all stages): 398GB
+- disk space used by files (from all stages, including planet osm): 398GB
 
 ## Plot
 
