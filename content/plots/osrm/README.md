@@ -16,24 +16,19 @@
 
 ## Statistics summary
 
-_extract_:
-Peak RAM usage: 374714064896 bytes
-Walltime: 187m6.449s
-
-_partition_:
-Peak RAM usage: 206655406080 bytes
-Walltime: 147m42.290s
-
-_customize_:
-Peak RAM usage: 259521667072 bytes
-Walltime: 16m1.305s
-
-_contract_:
-Peak RAM usage: 224867725312 bytes
-Walltime: 473m30.413s
-
-disk space used by files (from all stages):
-398GB
+- _extract_:
+  - Peak RAM usage: 374714064896 bytes
+  - Walltime: 187m6.449s
+- _partition_:
+  - Peak RAM usage: 206655406080 bytes
+  - Walltime: 147m42.290s
+- _customize_:
+  - Peak RAM usage: 259521667072 bytes
+  - Walltime: 16m1.305s
+- _contract_:
+  - Peak RAM usage: 224867725312 bytes
+  - Walltime: 473m30.413s
+- disk space used by files (from all stages): 398GB
 
 ## Plot
 
