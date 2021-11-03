@@ -7,7 +7,7 @@ This page summarizes memory and runtime characteristics for preparing files for 
 - OSRM: v5.27.0
 - Hardware: Amazon AWS EC2 **r5d.16xlarge**
 - Planet file: planet-211018.osm.pbf
-- Build steps (full script [here](planet-build.sh)):
+- Build steps (full script [here](planet.sh)):
 
   ```bash
   docker run --rm -t -v "/mnt/data1/planet:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/planet-211018.osm.pbf
@@ -36,10 +36,10 @@ This page summarizes memory and runtime characteristics for preparing files for 
 
 Memory (RAM) consumption of EC2 instance over time (including OS, etc. - stock memory usage: ~1GB):
 
-![planet](planet-build.png)
+![planet](planet.png)
 
-Find the full/interactive memory plot [here](https://merschformann.github.io/random/content/plots/osrm/planet-build.html).
+Find the full/interactive memory plot [here](https://merschformann.github.io/random/content/plots/osrm/planet.html).
 
 ## Log
 
-Full log of the build process lives [here](planet-build.log).
+Full log of the build process lives [here](planet.log).
