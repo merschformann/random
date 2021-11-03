@@ -1,5 +1,7 @@
 # Building planet for OSRM
 
+This page summarizes memory and runtime characteristics for preparing files for OSRM for a full planet osm. Results will vary for different OSRM version, planet file & hardware used, but they are hopefully useful to get a rough estimate.
+
 ## Summary
 
 - OSRM: v5.27.0
