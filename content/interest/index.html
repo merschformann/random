@@ -52,6 +52,7 @@
 </head>
 <body>
     <h1>Loan Cost Calculator</h1>
+
     <div class="calculator">
         <div class="form-group">
             <label for="loanAmount">Loan Amount:</label>
@@ -62,13 +63,17 @@
             <input type="number" id="interestRate" placeholder="Enter interest rate">
         </div>
         <div class="form-group">
-            <label for="loanTerm">Loan Term (years):</label>
-            <input type="number" id="loanTerm" placeholder="Enter loan term in years">
+            <label for="monthlyPayments">Payment Rate:</label>
+            <input type="number" id="monthlyPayments" placeholder="Enter monthly payment rate">
+        </div>
+        <div class="form-group">
+            <label for="annualPayments">Annual Payments:</label>
+            <input type="number" id="annualPayments" placeholder="Enter annual payment rate">
         </div>
         <button onclick="calculateLoan()">Calculate</button>
         <div id="result" class="result" style="display: none;">
             <h2>Result</h2>
-            <p>Monthly Repayment: <span id="monthlyPayment"></span></p>
+            <p>Loan payed off in: <span id="payoffTime"></span></p>
             <p>Total Interest Paid: <span id="totalInterest"></span></p>
         </div>
     </div>
@@ -77,18 +82,43 @@
         function calculateLoan() {
             const loanAmount = parseFloat(document.getElementById('loanAmount').value);
             const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
-            const loanTerm = parseFloat(document.getElementById('loanTerm').value);
+            const monthlyPayments = parseFloat(document.getElementById('monthlyPayments').value);
+            const annualPayments = parseFloat(document.getElementById('annualPayments').value);
 
-            if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTerm)) {
-                alert("Please enter valid numbers for all fields.");
+            if (isNaN(loanAmount) || loanAmount <= 0) {
+                alert('Please enter a valid loan amount.');
+                return;
+            }
+            if (isNaN(interestRate) || interestRate < 0) {
+                alert('Please enter a valid interest rate.');
+                return;
+            }
+            if (isNaN(monthlyPayments) || monthlyPayments <= 0) {
+                alert('Please enter a valid monthly payment rate.');
                 return;
             }
 
-            const totalCost = (loanAmount * Math.pow(1 + interestRate, loanTerm));
-            const totalInterest = totalCost - loanAmount;
-            const monthlyPayment = totalCost / (loanTerm * 12);
+            var balance = loanAmount;
+            var totalInterest = 0;
+            var months = 0;
+            var maxMonths = 12 * 1000; // Prevent infinite loop in case of unrealistic inputs
+            while (balance > 0) {
+                months++;
+                var interest = balance * interestRate / 12;
+                totalInterest += interest;
+                balance -= (monthlyPayments - interest);
+                if (balance < 0) {
+                    balance = 0; // Prevent negative balance
+                }
+                if (months > maxMonths) {
+                    alert('The loan cannot be paid off with the given payment rate.');
+                    return;
+                }
+            }
 
-            document.getElementById('monthlyPayment').textContent = monthlyPayment.toFixed(2);
+            years = Math.floor(months / 12);
+            months = months % 12;
+            document.getElementById('payoffTime').textContent = years + ' years and ' + months + ' months';
             document.getElementById('totalInterest').textContent = totalInterest.toFixed(2);
             document.getElementById('result').style.display = 'block';
         }
